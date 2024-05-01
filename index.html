@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+function login() {
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+
+    if (username === 'admin' && password === 'password') {
+        window.location.href = 'dashboard.html'; 
+    } else {
+        alert('Invalid credentials, please try again.');
+    }
+}
+</script>
+</head>
+<body>
+<div class="login-container">
+    <div class="login-title">Login to Home Automation</div>
+    <div class="input-field" style="top: 117.82px;">
+        <input type="text" id="username" placeholder="Username">
+    </div>
+    <div class="input-field" style="top: 164.82px;">
+        <input type="password" id="password" placeholder="Password">
+    </div>
+    <div class="button-container" onclick="login()">
+        <span>Login</span>
+    </div>
+    <div class="text-link" style="top: 254.82px;">Forgot Password?</div>
+    <div class="text-link" style="top: 287.82px;" onclick="window.location='register.html'">Register New Account</div>
+</div>
+</body>
+</html>

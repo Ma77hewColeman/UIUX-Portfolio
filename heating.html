@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heating Control</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div style="width: 1280px; height: 800px; position: relative; background: linear-gradient(158deg, #6A11CB 0%, #2575FC 100%)">
+    <div style="width: 680px; height: 489px; left: 300px; top: 169px; position: absolute; background: rgba(255, 255, 255, 0.85); box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.20); border-radius: 20px; backdrop-filter: blur(10px)">
+        <div style="width: 180.20px; height: 27px; left: 250px; top: 59.90px; position: absolute; text-align: center; color: #2C3E50; font-size: 23.25px; font-family: Inter, sans-serif; font-weight: 700; word-wrap: break-word">Heating Control</div>
+        <div id="tempDisplay" style="width: 180px; height: 20px; left: 250px; top: 107.90px; position: absolute; text-align: center; color: #4A00E0; font-size: 17.02px; font-family: Inter, sans-serif; font-weight: 700;">Temperature 20°C</div>
+        <input type="range" min="10" max="30" value="20" step="0.5" id="tempSlider" class="slider" style="width: 600px; position: absolute; left: 40px; top: 150px;" oninput="updateTemperatureDisplay()">
+        <div style="width: 331px; height: 21px; left: 174px; top: 187px; position: absolute; text-align: center; color: #2C3E50; font-size: 18.12px; font-family: Inter, sans-serif; font-weight: 700; word-wrap: break-word">Heating Expenditure Over 12 Months</div>
+        <canvas id="heatingChart" style="width: 600px; height: 200px; position: absolute; top: 230px;"></canvas>
+    </div>
+</div>
+<a href="dashboard.html" style="width: 108px; height: 48px; left: 31px; top: 20px; position: absolute; background: rgba(255, 255, 255, 0.85); box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.20); border-radius: 20px; backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; color: white; font-size: 14.75px; font-family: Inter, sans-serif; text-decoration: none;">Back</a>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('heatingChart').getContext('2d');
+    const heatingChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: 'Heating Cost (£)',
+                data: [100, 80, 60, 40, 20, 30, 50, 70, 90, 110, 130, 150],
+                borderColor: '#007bff',
+                backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const tempSlider = document.getElementById('tempSlider');
+    const tempDisplay = document.getElementById('tempDisplay');
+    tempSlider.addEventListener('input', function() {
+        tempDisplay.innerText = `Temperature ${this.value}°C`;
+    });
+});
+</script>
+</body>
+</html>

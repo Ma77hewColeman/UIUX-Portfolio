@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighting Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div style="width: 1280px; height: 800px; position: relative; background: linear-gradient(158deg, #6A11CB 0%, #2575FC 100%)">
+    <div style="width: 680px; height: 637.81px; left: 300px; top: 81px; position: absolute; background: rgba(255, 255, 255, 0.85); box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.20); border-radius: 20px; backdrop-filter: blur(10px)">
+        <h1 style="text-align: center; margin-top: 20px; color: #2C3E50; font-size: 23.62px; font-family: 'Inter', sans-serif; font-weight: 700;">Lighting Dashboard</h1>
+        <div style="margin: 40px; display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 16px; color: #2C3E50; font-family: 'Inter', sans-serif; width: 200px;">Living Room Light:</span>
+            <input type="range" min="0" max="100" value="0" class="slider" id="living-room-light" style="width: 400px;">
+            <span id="living-room-output" style="font-size: 16px; color: #2C3E50; width: 50px; text-align: right;">0%</span>
+        </div>
+        <div style="margin: 40px; display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 16px; color: #2C3E50; font-family: 'Inter', sans-serif; width: 200px;">Kitchen Light:</span>
+            <input type="range" min="0" max="100" value="0" class="slider" id="kitchen-light" style="width: 400px;">
+            <span id="kitchen-output" style="font-size: 16px; color: #2C3E50; width: 50px; text-align: right;">0%</span>
+        </div>
+        <div style="margin: 40px; display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 16px; color: #2C3E50; font-family: 'Inter', sans-serif; width: 200px;">Bedroom Light:</span>
+            <input type="range" min="0" max="100" value="0" class="slider" id="bedroom-light" style="width: 400px;">
+            <span id="bedroom-output" style="font-size: 16px; color: #2C3E50; width: 50px; text-align: right;">0%</span>
+        </div>
+        <div style="text-align: center; margin-top: 50px; padding-left: 40px">
+					<a class="button-container" onclick="window.location='newdevice.html'"><i class="fas fa-plus"></i>  Add New Device</a>
+        </div>
+    </div>
+    <a href="dashboard.html" style="width: 108px; height: 48px; left: 31px; top: 20px; position: absolute; background: rgba(255, 255, 255, 0.85); box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.20); border-radius: 20px; backdrop-filter: blur(10px); text-align: center; color: white; font-size: 14.75px; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center;">Back</a>
+</div>
+
+<script>
+    document.getElementById('living-room-light').oninput = function() {
+        document.getElementById('living-room-output').innerText = this.value + '%';
+    };
+    document.getElementById('kitchen-light').oninput = function() {
+        document.getElementById('kitchen-output').innerText = this.value + '%';
+    };
+    document.getElementById('bedroom-light').oninput = function() {
+        document.getElementById('bedroom-output').innerText = this.value + '%';
+    };
+</script>
+</body>
+</html>

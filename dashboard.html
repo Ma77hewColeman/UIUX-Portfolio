@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 1280px; height: 800px; position: relative; background: linear-gradient(158deg, #6A11CB 0%, #2575FC 100%)">
+        <div style="width: 1200px; height: 800px; left: 40px; top: -50px; position: absolute; background: rgba(255, 255, 255, 0.85); box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.20); border-radius: 20px; backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center;">
+            <div style="margin-top: 20px;">
+                <h1 style="color: #2C3E50; font-size: 30px; font-family: Inter, sans-serif; font-weight: 700;">Smart Home Dashboard</h1>
+                <div class="controls" style="display: flex; flex-direction: column; align-items: center;">
+					<div style="text-align: center; padding-top: 20px">
+						<a class="button-container" onclick="window.location='lighting.html'"><i class="fas fa-lightbulb"></i>  Toggle Lights</a>
+					</div>
+					<div style="text-align: center; padding-top: 20px">
+						<a class="button-container" onclick="window.location='heating.html'"><i class="fas fa-thermometer-half"></i>  Adjust Heating</a>
+					</div>
+					<div style="text-align: center; padding-top: 20px">
+						<a class="button-container" onclick="window.location='cooling.html'"><i class="fas fa-snowflake"></i>  Adjust Cooling</a>
+					</div>
+					<div style="text-align: center; padding-top: 20px">
+						<a class="button-container" onclick="window.location='water.html'"><i class="fas fa-tint"></i>  View Water Usage</a>
+					</div>
+					<div style="text-align: center; padding-top: 20px">
+						<a class="button-container" onclick="window.location='devicemanage.html'"><i class="fas fa-plus"></i>  Manage Devices</a>
+					</div>
+                </div>
+            </div>
+            <div class="chart-container" style="display: flex; width: 45%; justify-content: space-around; padding-top: 100px;">
+                <canvas id="waterUsageChart" style="width:400px; height: 200px;"></canvas>
+                <canvas id="heatingChart" style="width:400px; height: 200px;"></canvas>
+            </div>
+        </div>
+    </div>
+	    <a href="index.html" style="width: 108px; height: 48px; left: 31px; top: 20px; position: absolute; background: rgba(255, 255, 255, 0.85); box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.20); border-radius: 20px; backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; color: white; font-size: 14.75px; font-family: Inter; text-decoration: none;">Log Out</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const waterUsage = [120, 110, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220];
+            const heatingCost = [60, 62, 58, 55, 53, 50, 47, 45, 42, 40, 38, 35];
+
+            const ctx1 = document.getElementById('waterUsageChart').getContext('2d');
+            const waterUsageChart = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'Water Usage (Liters)',
+                        data: waterUsage,
+                        borderColor: '#007bff',
+                        backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            const ctx2 = document.getElementById('heatingChart').getContext('2d');
+            const heatingChart = new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'Heating Cost (£)',
+                        data: heatingCost,
+                        borderColor: '#dc3545',
+                        backgroundColor: 'rgba(220, 53, 69, 0.5)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
